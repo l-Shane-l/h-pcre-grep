@@ -1,5 +1,5 @@
 [![progress-banner](https://backend.codecrafters.io/progress/grep/24a432be-bb93-4a4b-9a43-f6d7a369912b)](https://app.codecrafters.io/users/codecrafters-bot?r=2qF)
-
+ss
 This is a starting point for Haskell solutions to the
 ["Build Your Own grep" Challenge](https://app.codecrafters.io/courses/grep/overview).
 
