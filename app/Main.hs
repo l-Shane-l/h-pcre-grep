@@ -2,7 +2,6 @@
 
 module Main where
 
-import Data.ByteString.Char8 qualified as B
 import Data.Semigroup ((<>))
 import Options.Applicative
 import System.Exit (exitFailure, exitSuccess)
