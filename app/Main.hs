@@ -1,32 +1,69 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Main where
 
-import Data.Char (isAlpha, isDigit)
-import System.Environment
-import System.Exit
+import Data.ByteString.Char8 qualified as B
+import Data.Semigroup ((<>))
+import Options.Applicative
+import System.Exit (exitFailure, exitSuccess)
+import Text.Regex.PCRE
 
--- Updated to handle single characters and the \d pattern for digits
+data Options = Options
+  { regexEnabled :: Bool,
+    regexPattern :: String,
+    inputLine :: Maybe String
+  }
+
+optionsParser :: Parser Options
+optionsParser =
+  Options
+    <$> switch
+      ( long "regex"
+          <> short 'E'
+          <> help "Enable regex pattern matching"
+      )
+    <*> argument
+      str
+      ( metavar "PATTERN"
+          <> help "Regex pattern to match against the input"
+      )
+    <*> optional
+      ( strOption
+          ( long "input"
+              <> short 'i'
+              <> metavar "INPUT"
+              <> help "Input line to search"
+          )
+      )
+
+parserInfo :: ParserInfo Options
+parserInfo =
+  info
+    (optionsParser <**> helper)
+    ( fullDesc
+        <> progDesc "Matches a regex PATTERN against an INPUT line"
+        <> header "haskell-regex - a command-line regex matcher"
+    )
+
 matchPattern :: String -> String -> Bool
-matchPattern pattern input =
-  case pattern of
-    "\\w" -> all isAlpha input
-    "\\d" -> any isDigit input -- Checks for any digit in the input
-    [c] -> c `elem` input -- Checks if the single character is in the input
-    ('[' : cs) ->
-      if head cs == '^'
-        then not $ any (`elem` input) (tail $ init cs) -- match first "[" then use init to remove ending "]"
-        else (`elem` input) `any` init cs
-    _ -> error $ "Unhandled pattern: " ++ pattern
+matchPattern pattern input = input =~ pattern
 
 main :: IO ()
 main = do
-  args <- getArgs
-  if head args /= "-E" || length args < 2
+  opts <- execParser parserInfo
+  let pattern = regexPattern opts
+  let enableRegex = regexEnabled opts
+  input <- maybe getLine return (inputLine opts)
+
+  if not enableRegex
     then do
-      putStrLn "Expected first argument to be '-E' and a pattern provided"
+      putStrLn "Regex pattern matching not enabled. Use -E to enable."
       exitFailure
-    else do
-      let pattern = args !! 1
-      input_line <- getLine
-      if matchPattern pattern input_line
-        then exitSuccess
-        else exitFailure
+    else
+      if matchPattern pattern input
+        then do
+          putStrLn "Pattern matches the input."
+          exitSuccess
+        else do
+          putStrLn "No match found."
+          exitFailure
