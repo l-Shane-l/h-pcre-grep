@@ -7,12 +7,14 @@ import Options.Applicative
 import System.Exit (exitFailure, exitSuccess)
 import Text.Regex.PCRE
 
+-- create a ADT for code reability
 data Options = Options
   { regexEnabled :: Bool,
     regexPattern :: String,
     inputLine :: Maybe String
   }
 
+-- use optParse to clean up code and provide nice output to users
 optionsParser :: Parser Options
 optionsParser =
   Options
@@ -44,6 +46,7 @@ parserInfo =
         <> header "haskell-regex - a command-line regex matcher"
     )
 
+-- simple function to make use of Haskells PCRE
 matchPattern :: String -> String -> Bool
 matchPattern pattern input = input =~ pattern
 
