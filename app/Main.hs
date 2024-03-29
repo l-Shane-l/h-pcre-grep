@@ -11,6 +11,7 @@ matchPattern pattern input =
     "\\w" -> all isAlpha input
     "\\d" -> any isDigit input -- Checks for any digit in the input
     [c] -> c `elem` input -- Checks if the single character is in the input
+    ('[' : cs) -> (`elem` input) `any` init cs -- match first "[" then use init to remove ending "]"
     _ -> error $ "Unhandled pattern: " ++ pattern
 
 main :: IO ()
