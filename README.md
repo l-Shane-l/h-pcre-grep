@@ -79,24 +79,6 @@ for making command line tools
 | \p{xx}            | char with unicode property (ie: \p{Arabic} |
 | \P{xx}            | char without unicode property              |
 
-| Sequence               | Description                                  | Example               | Valid match                                | Invalid          |
-| :--------------------- | :------------------------------------------- | :-------------------- | :----------------------------------------- | ---------------- | ----- |
-| \|                     | alternation                                  | apple\|orange         | apple, orange                              | melon            |
-| ( )                    | subpattern                                   | foot(er\|ball)        | footer or football                         | footpath         |
-| (?P\<_name_>...)       | subpattern, and capture submatch into _name_ | `(?P<greeting>hello)` | hello                                      | hallo            |
-| (?:...)                | subpattern, but does not capture submatch    | (?:hello)             | hello                                      | hallo            |
-| +                      | one or more quantifier                       | ye+ah                 | yeah, yeeeah                               | yah              |
-| \*                     | zero or more quantifier                      | ye\*ah                | yeeah, yeeeah, yah                         | yeh              |
-| ?                      | zero or one quantifier                       | yes?                  | yes, ye                                    | yess             |
-| ??                     | zero or one, as few times as possible (lazy) | yea??h                | yeah                                       | yeaah            |
-| +?                     | one or more lazy                             | `/<.+?>/g`            | `<P>foo</P>` matches only `<P>` and `</P>` |
-| \*?                    | zero or more, lazy                           | `/<.*?>/g`            | `<html>`                                   |
-| {n}                    | n times exactly                              | fo{2}                 | foo                                        | fooo             |
-| {n,m}                  | from n to m times                            | go{2,3}d              | good,goood                                 | gooood           |
-| {n,}                   | at least n times                             | go{2,}                | goo, gooo                                  | go               |
-| (?(condition)...)      | if-then pattern                              | `(<)?[p](?(1)>)`      | `<p>`, p                                   | <p               |
-| (?(condition)...\|...) | if-then-else pattern                         | `^(?(?=q)que          | ans)`                                      | question, answer | quote |
-
 | Pattern modifier | Description                                                     |
 | :--------------- | :-------------------------------------------------------------- |
 | g                | global match                                                    |
