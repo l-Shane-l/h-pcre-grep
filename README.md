@@ -35,6 +35,26 @@ for making command line tools
 - Building a grep clone with 70 lines of custom haskell is really satisfying and should be the base of a lot of
   my future projects.
 
+## Conclusion
+
+Finally this project really highlighted to me something I struggle to put into clear words.
+but its something that inspired my focus on haskell, and that is the speed of development that
+is possible through abstraction, I can see it in C++ but its even more pronounces in haskell.
+
+This project gives a really clear demonstration, I could have naively implemented each step of the regex
+and even would have thought I was making good progress because of the powerful pattern matching in haskell.
+If this was a real world case I might have ended up with a massive multi file project, however investing`
+time into learning about the applicative args library and then regex in haskell it thought it might be possible
+for me even with my limited haskell experience to build a higher kinded approach and make it way more powerful
+It was a 5 hour struggle to get it all working and built and I lost motivation a few times
+I even thought it might not be doable. So it was incredibly satisfying to get it working and to see it
+not only pass tests 4 but all remaining tests up to 15.
+
+I think this project marks a turning point in my confidence with haskell and the first time, I took a similar approach
+to what I would have done in C++ my main language, that is find a shortcut.
+
+Im really happy with this progress and excited to see what the next one will bring
+
 ## Cheat Sheet
 
 | Sequence               | Description                                  | Example               | Valid match                                | Invalid          |
