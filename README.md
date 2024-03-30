@@ -28,6 +28,10 @@ for making command line tools
   of the challenge, how ever I struggle to see the value of hand coding the regex's
   Especially as this is code I want to use beyond the challenge.
 
+- From this challenge I really got to dive deep on regex, and finally understand what grep is.
+  I thought it was like other command line tools and didnt realise it was an acronym. Im really happy
+  I got the chance to experiment with the varies regex standards and feel like I can reliably use pcre now.
+
 ## Cheat Sheet
 
 | Sequence               | Description                                  | Example               | Valid match                                | Invalid          |
