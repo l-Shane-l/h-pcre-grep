@@ -52,6 +52,7 @@ matchPattern pattern input = input =~ pattern
 
 main :: IO ()
 main = do
+  -- here is where the magic happens, we use the ADT and optParse to read in the users input
   opts <- execParser parserInfo
   let pattern = regexPattern opts
   let enableRegex = regexEnabled opts
