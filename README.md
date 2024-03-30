@@ -32,6 +32,9 @@ for making command line tools
   I thought it was like other command line tools and didnt realise it was an acronym. Im really happy
   I got the chance to experiment with the varies regex standards and feel like I can reliably use pcre now.
 
+- Building a grep clone with 70 lines of custom haskell is really satisfying and should be the base of a lot of
+  my future projects.
+
 ## Cheat Sheet
 
 | Sequence               | Description                                  | Example               | Valid match                                | Invalid          |
